@@ -29,8 +29,7 @@ in_size(l::DenseLayer) = size(l.weight, 2)
 fprop{T}(l::DenseLayer{T}, in::Array{T}) = l.weight * in .+ l.bias
 grad{T}(l::DenseLayer{T}, in::Array{T}, d_out::Array{T}) =
     DenseLayer(d_out * in', sum(d_out, 2)[:, 1])
-bprop{T}(l::DenseLayer{T}, d_out::Array{T}) = l.weight' * d_out
-bprop{T}(l::DenseLayer{T}, in::Array{T}, out::Array{T}, d_out::Array{T}) = bprop(l, d_out)
+bprop{T}(l::DenseLayer{T}, in::Array{T}, out::Array{T}, d_out::Array{T}) = l.weight' * d_out
 
 # Extracts weights
 weight{T}(l::DenseLayer{T}) = Array{T}[l.weight, l.bias]
