@@ -5,4 +5,7 @@ module Neuro
 include("layer.jl")
 include("layers/Layers.jl")
 
+# Architectures of networks
+include("networks/Networks.jl")
+
 end
