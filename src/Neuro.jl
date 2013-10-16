@@ -2,10 +2,9 @@
 module Neuro
 
 # Layers of neural network
-include("layer.jl")
-include("layers/Layers.jl")
+include("layer/Layer.jl")
 
 # Architectures of networks
-include("networks/Networks.jl")
+include("network/Network.jl")
 
 end

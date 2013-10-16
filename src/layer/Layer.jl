@@ -1,8 +1,10 @@
-export Layers
+export Layer
 
 # Sorts of layers
-module Layers
+module Layer
 using ..Neuro
+
+include("abstract_layer.jl")
 
 # Learnable layers
 include("dense_layer.jl")

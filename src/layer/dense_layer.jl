@@ -3,7 +3,7 @@ export DenseLayer, out_size, in_size, fprop, grad, bprop, weight
 # Fully-connected learnable layer.
 # Note that, though this type is declared as immutable, elements of its weight
 # and bias are mutable.
-immutable DenseLayer{T} <: Layer{T}
+immutable DenseLayer{T} <: AbstractLayer{T}
     weight::Matrix{T}
     bias::Vector{T}
 

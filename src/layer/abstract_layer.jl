@@ -1,4 +1,4 @@
-export Layer
+export AbstractLayer
 
 # Base abstract type for all layers in neural networks.
-abstract Layer{T<:Real}
+abstract AbstractLayer{T<:Real}

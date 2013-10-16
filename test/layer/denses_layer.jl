@@ -1,5 +1,5 @@
 using Base.Test
-using Neuro.Layers
+using Neuro.Layer
 
 @test_throws DenseLayer([1. 2.; 3. 4.], [1. 2. 3.])
 @test_throws DenseLayer([1. 2. 3.; 4. 5. 6.], [1. 2.])

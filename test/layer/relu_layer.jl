@@ -1,5 +1,5 @@
 using Base.Test
-using Neuro.Layers
+using Neuro.Layer
 
 # Test on a sample
 let
