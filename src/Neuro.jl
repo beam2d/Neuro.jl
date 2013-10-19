@@ -7,4 +7,7 @@ include("layer/Layer.jl")
 # Architectures of networks
 include("network/Network.jl")
 
+# Utilities for reading datasets
+include("dataset/Dataset.jl")
+
 end
