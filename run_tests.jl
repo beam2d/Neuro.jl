@@ -2,13 +2,17 @@
 include("src/Neuro.jl")
 
 function gather_source_files(dir::String, files::Array{String})
-    for fn in readdir(dir)
-        path = joinpath(dir, fn)
-        if endswith(path, ".jl")
-            push!(files, path)
-        else
-            gather_source_files(path, files)
+    try
+        for fn in readdir(dir)
+            path = joinpath(dir, fn)
+            if endswith(path, ".jl")
+                push!(files, path)
+            else !endswith(path, ".txt")
+                gather_source_files(path, files)
+            end
         end
+    catch e
+        # Exception is thrown when readdir failed since dir is not a directory.
     end
 end
 
