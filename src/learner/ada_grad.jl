@@ -9,7 +9,7 @@ immutable AdaGrad{T<:Real} <: AbstractLearner{T}
     sqsum_grads::Array{Array{T}}
     rate::T
 
-    # eps is the initial value of elements of sqsum_grads. Using small but
+    # eps is the initial value of elements of sqsum_grads. Using a small
     # positive eps gives arithmetic stability at the first few updates.
     AdaGrad{T}(weights::Array{Array{T}}, rate::T, eps::T=convert(T, 0.01)) =
         new(weights, Array{T}[fill(eps, size(w)) for w in weights], rate)
