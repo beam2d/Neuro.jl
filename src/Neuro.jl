@@ -7,6 +7,9 @@ include("layer/Layer.jl")
 # Architectures of networks
 include("network/Network.jl")
 
+# Gradient-based learners
+include("learner/Learner.jl")
+
 # Utilities for reading datasets
 include("dataset/Dataset.jl")
 
