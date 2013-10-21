@@ -17,7 +17,7 @@ end
 
 function update!{T}(ada_grad::AdaGrad{T}, grads::Array{Array{T}})
     @assert length(ada_grad.sqsum_grads) == length(grads)
-    for w, ag, g in zip(ada_grad.weights, ada_grad.sqsum_grads, grads)
+    for (w, ag, g) in zip(ada_grad.weights, ada_grad.sqsum_grads, grads)
         ag += abs2(g)
         w -= ada_grad.rate * g ./ sqrt(ag)
     end
