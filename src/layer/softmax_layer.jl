@@ -4,7 +4,7 @@ export SoftmaxLayer, fprop, grad, bprop, weight
 immutable SoftmaxLayer{T} <: ImmutableLayer{T}; end
 
 function fprop{T}(::SoftmaxLayer{T}, in::AbstractArray{T})
-    out = exp(in .- mapslices(max, in, 1))
+    out = exp(in .- mapslices(maximum, in, 1))
     out ./ mapslices(sum, out, 1)
 end
 
