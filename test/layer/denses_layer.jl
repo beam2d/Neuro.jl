@@ -26,8 +26,9 @@ let
 
         d = [1., -1.]
         g = grad(l, x, d)
-        @test_approx_eq(d * x', g.weight)
-        @test_approx_eq(d, g.bias)
+        @test length(g) == 2
+        @test_approx_eq(d * x', g[1])
+        @test_approx_eq(d, g[2])
 
         @test_approx_eq(W' * d, bprop(l, x, y, d))
     end
@@ -42,8 +43,9 @@ let
         d1 = [1., -1.]
         d2 = [-2., 3.]
         g = grad(l, [x1 x2], [d1 d2])
-        @test_approx_eq(d1 * x1' + d2 * x2', g.weight)
-        @test_approx_eq(d1 + d2, g.bias)
+        @test length(g) == 2
+        @test_approx_eq(d1 * x1' + d2 * x2', g[1])
+        @test_approx_eq(d1 + d2, g[2])
 
         @test_approx_eq([(W' * d1) (W' * d2)], bprop(l, [x1 x2], y, [d1 d2]))
     end

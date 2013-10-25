@@ -9,7 +9,7 @@ let
     @test_approx_eq([e, 1, 1/e] / (e + 1 + 1/e), y)
 
     groundtruth = [0., 1., 0.]
-    @test l == grad(l, x, groundtruth)
+    @test length(grad(l, x, groundtruth)) == 0
     @test_approx_eq(y - groundtruth, bprop(l, x, y, groundtruth))
 
     @test size(weight(l)) == (0,)
@@ -29,6 +29,6 @@ let
     groundtruth1 = [0., 1., 0.]
     groundtruth2 = [1., 0., 0.]
     groundtruth = [groundtruth1 groundtruth2]
-    @test l == grad(l, [x1 x2], groundtruth)
+    @test length(grad(l, [x1 x2], groundtruth)) == 0
     @test_approx_eq(y - groundtruth, bprop(l, [x1 x2], y, groundtruth))
 end

@@ -21,9 +21,9 @@ function calc_activations{T}(chain::ChainNetwork{T}, in::AbstractArray{T})
 end
 
 function grad{T}(chain::ChainNetwork{T}, activations::Vector{Array{T}}, d::AbstractArray{T})
-    grads = Layer.AbstractLayer{T}[]
+    grads = Array{T}[]
     for j=length(chain):-1:1
-        push!(grads, Layer.grad(chain[j], activations[j], d))
+        append!(grads, reverse(Layer.grad(chain[j], activations[j], d)))
         d = Layer.bprop(chain[j], activations[j], activations[j + 1], d)
     end
     reverse(grads)

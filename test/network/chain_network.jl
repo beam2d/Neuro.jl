@@ -14,7 +14,7 @@ end
 
 Layer.fprop(l::MultiplierLayer, in::Array{Float64}) = l.multiplier[1] * in
 Layer.grad(l::MultiplierLayer, in::Array{Float64}, d_out::Array{Float64}) =
-    MultiplierLayer(sum(in .* d_out))
+    Array{Float64}[[sum(in .* d_out)]]
 Layer.bprop(l::MultiplierLayer, in::Array{Float64}, out::Array{Float64}, d_out::Array{Float64}) =
     l.multiplier[1] * d_out
 Layer.weight(l::MultiplierLayer) = Array{Float64}[l.multiplier]
@@ -45,10 +45,9 @@ let
     @test [9., 15.] == activations[4]
 
     grads = grad(chain, activations, [1., -1.])
-    @test 3 == length(grads)
-    @test [-3.] == grads[1].multiplier
-    @test 1. == grads[2].constant
-    @test [-2.] == grads[3].multiplier
+    @test 2 == length(grads)
+    @test [-3.] == grads[1]
+    @test [-2.] == grads[2]
 
     weights = weight(chain)
     @test 2 == length(weights)
